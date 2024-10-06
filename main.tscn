@@ -1,8 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://evsjylwixarv"]
+[gd_scene load_steps=9 format=3 uid="uid://evsjylwixarv"]
 
 [ext_resource type="PackedScene" uid="uid://br81af7c7x62" path="res://scenes/prefabs/cell.tscn" id="1_8jtko"]
+[ext_resource type="Texture2D" uid="uid://c04sd2ge0u3x0" path="res://icon.svg" id="1_stixn"]
 [ext_resource type="Script" path="res://scenes/prefabs/cell.gd" id="2_rxsn3"]
 [ext_resource type="PackedScene" uid="uid://ypnvpop126a2" path="res://scenes/prefabs/drawer.tscn" id="3_hsewk"]
+[ext_resource type="PackedScene" uid="uid://d0wouk740bibs" path="res://scenes/ScreenCapture/ScreenCapturer.tscn" id="4_ytr26"]
+[ext_resource type="Texture2D" uid="uid://hif27udquwc2" path="res://Screenshots/Image_0.png" id="6_snobc"]
+[ext_resource type="Script" path="res://capture_button.gd" id="6_yudn2"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_xrdko"]
+viewport_path = NodePath("UI/CenterContainer/SubViewport")
 
 [node name="Node" type="Node"]
 
@@ -20,3 +27,54 @@ size_flags_vertical = 0
 
 [node name="Drawer" parent="UI" instance=ExtResource("3_hsewk")]
 layout_mode = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="UI"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SubViewport" type="SubViewport" parent="UI/CenterContainer"]
+
+[node name="ScreenCapturer" parent="UI/CenterContainer/SubViewport" instance=ExtResource("4_ytr26")]
+
+[node name="Control" type="Control" parent="UI/CenterContainer/SubViewport"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Dish" type="TextureRect" parent="UI/CenterContainer/SubViewport/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_stixn")
+
+[node name="CaptureButton" type="TextureButton" parent="UI"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -194.0
+offset_top = -194.0
+grow_horizontal = 0
+grow_vertical = 0
+texture_normal = ExtResource("1_stixn")
+texture_pressed = ExtResource("6_snobc")
+stretch_mode = 0
+script = ExtResource("6_yudn2")
+
+[node name="Subviewporty" type="TextureRect" parent="."]
+offset_left = 330.0
+offset_top = 58.0
+offset_right = 842.0
+offset_bottom = 570.0
+texture = SubResource("ViewportTexture_xrdko")
+
+[connection signal="pressed" from="UI/CaptureButton" to="UI/CaptureButton" method="_on_pressed"]

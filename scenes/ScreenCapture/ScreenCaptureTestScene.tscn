@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bw4hyhecrbfhy"]
 
-[ext_resource type="PackedScene" uid="uid://d0wouk740bibs" path="res://ScreenCapture/ScreenCapturer.tscn" id="1_stfo2"]
-[ext_resource type="Texture2D" uid="uid://d381a6rstshup" path="res://ScreenCapture/Boogiepop.jpg" id="2_e6jhx"]
+[ext_resource type="PackedScene" uid="uid://d0wouk740bibs" path="res://scenes/ScreenCapture/ScreenCapturer.tscn" id="1_stfo2"]
+[ext_resource type="Texture2D" uid="uid://d381a6rstshup" path="res://scenes/ScreenCapture/Boogiepop.jpg" id="2_e6jhx"]
 
 [sub_resource type="GDScript" id="GDScript_q8j2h"]
 script/source = "extends Node2D

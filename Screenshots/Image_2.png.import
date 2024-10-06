@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d381a6rstshup"
-path="res://.godot/imported/Boogiepop.jpg-160de77b6992785c0d73238eff6802b7.ctex"
+uid="uid://c8rb0atsirbtq"
+path="res://.godot/imported/Image_2.png-902258e1b216c3147b23c8faded8359d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ScreenCapture/Boogiepop.jpg"
-dest_files=["res://.godot/imported/Boogiepop.jpg-160de77b6992785c0d73238eff6802b7.ctex"]
+source_file="res://Screenshots/Image_2.png"
+dest_files=["res://.godot/imported/Image_2.png-902258e1b216c3147b23c8faded8359d.ctex"]
 
 [params]
 

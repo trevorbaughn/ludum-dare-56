@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://d0wouk740bibs"]
 
-[ext_resource type="Script" path="res://ScreenCapture/screen_capturer.gd" id="1_bo1tn"]
+[ext_resource type="Script" path="res://scenes/ScreenCapture/screen_capturer.gd" id="1_bo1tn"]
 
 [node name="ScreenCapturer" type="Node"]
 script = ExtResource("1_bo1tn")
