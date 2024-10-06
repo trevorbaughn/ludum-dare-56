@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=3 uid="uid://ypnvpop126a2"]
+
+[ext_resource type="Texture2D" uid="uid://c04sd2ge0u3x0" path="res://icon.svg" id="1_vyhvv"]
+[ext_resource type="Script" path="res://scenes/prefabs/drawer_closed.gd" id="2_enlte"]
+[ext_resource type="Script" path="res://scenes/prefabs/drawer_open.gd" id="3_q00x1"]
+
+[node name="Drawer" type="Control"]
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+
+[node name="DrawerClosed" type="TextureButton" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -128.0
+offset_bottom = 128.0
+grow_horizontal = 0
+texture_normal = ExtResource("1_vyhvv")
+script = ExtResource("2_enlte")
+
+[node name="DrawerOpen" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -128.0
+offset_bottom = 128.0
+grow_horizontal = 0
+texture_normal = ExtResource("1_vyhvv")
+flip_v = true
+script = ExtResource("3_q00x1")
+
+[connection signal="pressed" from="DrawerClosed" to="DrawerClosed" method="_on_pressed"]
+[connection signal="pressed" from="DrawerOpen" to="DrawerOpen" method="_on_pressed"]
