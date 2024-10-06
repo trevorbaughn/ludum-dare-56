@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://dp88xhc5cfm2p"]
+
+[ext_resource type="PackedScene" uid="uid://d0wouk740bibs" path="res://scenes/prefabs/ScreenCapturer.tscn" id="1_7p43q"]
+[ext_resource type="Texture2D" uid="uid://c04sd2ge0u3x0" path="res://icon.svg" id="1_a0wwb"]
+[ext_resource type="Script" path="res://scenes/prefabs/petridish.gd" id="1_t5dsw"]
+
+[sub_resource type="Animation" id="Animation_2urrm"]
+resource_name = "move_in"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ttm6i"]
+_data = {
+"move_in": SubResource("Animation_2urrm")
+}
+
+[node name="petridish" type="SubViewport"]
+script = ExtResource("1_t5dsw")
+
+[node name="Control" type="Control" parent="."]
+custom_minimum_size = Vector2(512, 512)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_a0wwb")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Control"]
+libraries = {
+"": SubResource("AnimationLibrary_ttm6i")
+}
+
+[node name="ScreenCapturer" parent="." instance=ExtResource("1_7p43q")]

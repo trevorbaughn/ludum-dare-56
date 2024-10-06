@@ -1,15 +1,69 @@
-[gd_scene load_steps=9 format=3 uid="uid://evsjylwixarv"]
+[gd_scene load_steps=13 format=3 uid="uid://evsjylwixarv"]
 
 [ext_resource type="PackedScene" uid="uid://br81af7c7x62" path="res://scenes/prefabs/cell.tscn" id="1_8jtko"]
 [ext_resource type="Texture2D" uid="uid://c04sd2ge0u3x0" path="res://icon.svg" id="1_stixn"]
 [ext_resource type="Script" path="res://scenes/prefabs/cell.gd" id="2_rxsn3"]
 [ext_resource type="PackedScene" uid="uid://ypnvpop126a2" path="res://scenes/prefabs/drawer.tscn" id="3_hsewk"]
-[ext_resource type="PackedScene" uid="uid://d0wouk740bibs" path="res://scenes/ScreenCapture/ScreenCapturer.tscn" id="4_ytr26"]
-[ext_resource type="Texture2D" uid="uid://hif27udquwc2" path="res://Screenshots/Image_0.png" id="6_snobc"]
+[ext_resource type="PackedScene" uid="uid://dp88xhc5cfm2p" path="res://scenes/prefabs/petridish.tscn" id="4_1bunk"]
 [ext_resource type="Script" path="res://capture_button.gd" id="6_yudn2"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_xrdko"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_psgoa"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_tcp3v"]
 viewport_path = NodePath("UI/CenterContainer/SubViewport")
+
+[sub_resource type="Animation" id="Animation_iv7xq"]
+resource_name = "move_in"
+length = 1.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.25),
+"transitions": PackedFloat32Array(1, 1.8025),
+"update": 0,
+"values": [Vector2(330, -700), Vector2(330, 58)]
+}
+
+[sub_resource type="Animation" id="Animation_hvk5u"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(330, 58)]
+}
+
+[sub_resource type="Animation" id="Animation_wlgd3"]
+resource_name = "move_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.435275, 0.366021),
+"update": 0,
+"values": [Vector2(330, 58), Vector2(330, -700)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_53sew"]
+_data = {
+"RESET": SubResource("Animation_hvk5u"),
+"move_in": SubResource("Animation_iv7xq"),
+"move_out": SubResource("Animation_wlgd3")
+}
 
 [node name="Node" type="Node"]
 
@@ -33,26 +87,7 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="SubViewport" type="SubViewport" parent="UI/CenterContainer"]
-
-[node name="ScreenCapturer" parent="UI/CenterContainer/SubViewport" instance=ExtResource("4_ytr26")]
-
-[node name="Control" type="Control" parent="UI/CenterContainer/SubViewport"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Dish" type="TextureRect" parent="UI/CenterContainer/SubViewport/Control"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("1_stixn")
+[node name="SubViewport" parent="UI/CenterContainer" instance=ExtResource("4_1bunk")]
 
 [node name="CaptureButton" type="TextureButton" parent="UI"]
 layout_mode = 1
@@ -66,15 +101,23 @@ offset_top = -194.0
 grow_horizontal = 0
 grow_vertical = 0
 texture_normal = ExtResource("1_stixn")
-texture_pressed = ExtResource("6_snobc")
+texture_pressed = SubResource("CompressedTexture2D_psgoa")
 stretch_mode = 0
 script = ExtResource("6_yudn2")
+wait_time = 1.5
 
 [node name="Subviewporty" type="TextureRect" parent="."]
 offset_left = 330.0
 offset_top = 58.0
 offset_right = 842.0
 offset_bottom = 570.0
-texture = SubResource("ViewportTexture_xrdko")
+texture = SubResource("ViewportTexture_tcp3v")
 
-[connection signal="pressed" from="UI/CaptureButton" to="UI/CaptureButton" method="_on_pressed"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Subviewporty"]
+libraries = {
+"": SubResource("AnimationLibrary_53sew")
+}
+
+[connection signal="button_down" from="UI/CaptureButton" to="UI/CaptureButton" method="_on_button_down"]
+[connection signal="button_up" from="UI/CaptureButton" to="UI/CaptureButton" method="_on_button_up"]
+[connection signal="capture_petri" from="UI/CaptureButton" to="UI/CenterContainer/SubViewport" method="_on_capture_button_capture_petri"]

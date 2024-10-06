@@ -14,7 +14,6 @@ offset_bottom = 40.0
 grow_horizontal = 0
 
 [node name="DrawerClosed" type="TextureButton" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -26,6 +25,7 @@ texture_normal = ExtResource("1_vyhvv")
 script = ExtResource("2_enlte")
 
 [node name="DrawerOpen" type="TextureButton" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0

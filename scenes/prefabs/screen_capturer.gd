@@ -9,9 +9,8 @@ extends Node
 # note: the image numbers would have ideally gone up linearly, however due to godot creating .import files when it saves
 # the way I am calculating that number is no beuno, but whatever, so long as each image gets a unique file name it gets the job done
 
-func _process(delta: float) -> void:
-	if (Input.is_action_just_pressed("Screenshot-(Development)")):
-		ScreenShot();
+func _on_capture_button_capture_petri() -> void:
+	ScreenShot();
 	
 func list_files_in_directory(path):
 	var dir = DirAccess.open("res://%s" % path);
