@@ -1,4 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bw4hyhecrbfhy"]
+[gd_scene load_steps=4 format=3 uid="uid://bw4hyhecrbfhy"]
+
+[ext_resource type="PackedScene" uid="uid://d0wouk740bibs" path="res://ScreenCapture/ScreenCapturer.tscn" id="1_stfo2"]
+[ext_resource type="Texture2D" uid="uid://d381a6rstshup" path="res://ScreenCapture/Boogiepop.jpg" id="2_e6jhx"]
 
 [sub_resource type="GDScript" id="GDScript_q8j2h"]
 script/source = "extends Node2D
@@ -16,3 +19,10 @@ func _process(delta: float) -> void:
 
 [node name="Node2D" type="Node2D"]
 script = SubResource("GDScript_q8j2h")
+
+[node name="ScreenCapturer" parent="." instance=ExtResource("1_stfo2")]
+
+[node name="Boogiepop" type="Sprite2D" parent="."]
+position = Vector2(522, 315)
+scale = Vector2(0.785417, 0.184259)
+texture = ExtResource("2_e6jhx")
