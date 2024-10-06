@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://evsjylwixarv"]
 
-[ext_resource type="PackedScene" uid="uid://br81af7c7x62" path="res://prefabs/cell.tscn" id="1_8jtko"]
-[ext_resource type="Script" path="res://prefabs/cell.gd" id="2_rxsn3"]
+[ext_resource type="PackedScene" uid="uid://br81af7c7x62" path="res://scenes/prefabs/cell.tscn" id="1_8jtko"]
+[ext_resource type="Script" path="res://scenes/prefabs/cell.gd" id="2_rxsn3"]
 
 [node name="Node2D" type="Node2D"]
 
