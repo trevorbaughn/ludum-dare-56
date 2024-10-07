@@ -1,35 +1,16 @@
-[gd_scene load_steps=14 format=3 uid="uid://evsjylwixarv"]
+[gd_scene load_steps=13 format=3 uid="uid://evsjylwixarv"]
 
-[ext_resource type="PackedScene" uid="uid://br81af7c7x62" path="res://scenes/prefabs/cell.tscn" id="1_8jtko"]
-[ext_resource type="Script" path="res://scenes/prefabs/cell.gd" id="2_rxsn3"]
 [ext_resource type="PackedScene" uid="uid://ypnvpop126a2" path="res://scenes/prefabs/drawer.tscn" id="3_hsewk"]
-[ext_resource type="PackedScene" uid="uid://dp88xhc5cfm2p" path="res://scenes/prefabs/petridish.tscn" id="4_1bunk"]
+[ext_resource type="PackedScene" uid="uid://d0wouk740bibs" path="res://scenes/prefabs/ScreenCapturer.tscn" id="4_ytr26"]
 [ext_resource type="Texture2D" uid="uid://cks4i24fbk38x" path="res://assets/sprites/button unpressed.png" id="5_s63tq"]
 [ext_resource type="Texture2D" uid="uid://b52h7fxq7j4bs" path="res://assets/sprites/button pressed.png" id="6_0yeit"]
 [ext_resource type="Script" path="res://capture_button.gd" id="6_yudn2"]
+[ext_resource type="Texture2D" uid="uid://dslqxro5kfx7d" path="res://assets/sprites/dish.png" id="7_cq2aw"]
+[ext_resource type="PackedScene" uid="uid://6a7ta8tturx0" path="res://scenes/prefabs/bacteria.tscn" id="7_oaba0"]
 [ext_resource type="Texture2D" uid="uid://bwb0lqj4q7frd" path="res://assets/sprites/background.png" id="8_e5nev"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_kvbh5"]
-viewport_path = NodePath("UI/CenterContainer/SubViewport")
-
-[sub_resource type="Animation" id="Animation_iv7xq"]
-resource_name = "move_in"
+[sub_resource type="Animation" id="Animation_klbet"]
 length = 1.25
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.25),
-"transitions": PackedFloat32Array(1, 1.8025),
-"update": 0,
-"values": [Vector2(330, -700), Vector2(330, 58)]
-}
-
-[sub_resource type="Animation" id="Animation_hvk5u"]
-length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -43,8 +24,24 @@ tracks/0/keys = {
 "values": [Vector2(330, 58)]
 }
 
-[sub_resource type="Animation" id="Animation_wlgd3"]
-resource_name = "move_out"
+[sub_resource type="Animation" id="Animation_j46kl"]
+resource_name = "move_in"
+length = 1.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.25),
+"transitions": PackedFloat32Array(0.420448, 0.287174),
+"update": 0,
+"values": [Vector2(330, 58), Vector2(330, -700)]
+}
+
+[sub_resource type="Animation" id="Animation_axspa"]
+resource_name = "move_in"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -53,22 +50,19 @@ tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(0.435275, 0.366021),
+"transitions": PackedFloat32Array(0.450625, 4.28709),
 "update": 0,
-"values": [Vector2(330, 58), Vector2(330, -700)]
+"values": [Vector2(330, -700), Vector2(330, 58)]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_53sew"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pyx84"]
 _data = {
-"RESET": SubResource("Animation_hvk5u"),
-"move_in": SubResource("Animation_iv7xq"),
-"move_out": SubResource("Animation_wlgd3")
+"RESET": SubResource("Animation_klbet"),
+"move_in": SubResource("Animation_axspa"),
+"move_out": SubResource("Animation_j46kl")
 }
 
 [node name="Node" type="Node"]
-
-[node name="Cell" parent="." instance=ExtResource("1_8jtko")]
-script = ExtResource("2_rxsn3")
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
@@ -82,13 +76,6 @@ size_flags_vertical = 0
 [node name="Drawer" parent="UI" instance=ExtResource("3_hsewk")]
 layout_mode = 1
 
-[node name="CenterContainer" type="CenterContainer" parent="UI"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="SubViewport" parent="UI/CenterContainer" instance=ExtResource("4_1bunk")]
-
 [node name="CaptureButton" type="TextureButton" parent="UI"]
 layout_mode = 1
 anchors_preset = 3
@@ -96,27 +83,18 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -110.0
-offset_top = -66.0
+offset_left = -251.0
+offset_top = -129.0
+offset_right = -141.0
+offset_bottom = -63.0
 grow_horizontal = 0
 grow_vertical = 0
+scale = Vector2(2, 2)
 texture_normal = ExtResource("5_s63tq")
 texture_pressed = ExtResource("6_0yeit")
 stretch_mode = 0
 script = ExtResource("6_yudn2")
 wait_time = 1.5
-
-[node name="Subviewporty" type="TextureRect" parent="."]
-offset_left = 330.0
-offset_top = 58.0
-offset_right = 842.0
-offset_bottom = 570.0
-texture = SubResource("ViewportTexture_kvbh5")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Subviewporty"]
-libraries = {
-"": SubResource("AnimationLibrary_53sew")
-}
 
 [node name="Background" type="TextureRect" parent="."]
 z_index = -5
@@ -128,6 +106,32 @@ grow_vertical = 2
 mouse_filter = 2
 texture = ExtResource("8_e5nev")
 
+[node name="ScreenCapturer" parent="." instance=ExtResource("4_ytr26")]
+
+[node name="PetriDish" type="TextureRect" parent="."]
+show_behind_parent = true
+z_index = -1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -246.0
+offset_top = -266.0
+offset_right = 266.0
+offset_bottom = 246.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_cq2aw")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PetriDish"]
+libraries = {
+"": SubResource("AnimationLibrary_pyx84")
+}
+
+[node name="BCell" parent="PetriDish" instance=ExtResource("7_oaba0")]
+position = Vector2(160, 214.001)
+
 [connection signal="button_down" from="UI/CaptureButton" to="UI/CaptureButton" method="_on_button_down"]
 [connection signal="button_up" from="UI/CaptureButton" to="UI/CaptureButton" method="_on_button_up"]
-[connection signal="capture_petri" from="UI/CaptureButton" to="UI/CenterContainer/SubViewport" method="_on_capture_button_capture_petri"]
+[connection signal="capture_petri" from="UI/CaptureButton" to="ScreenCapturer" method="_on_capture_button_capture_petri"]

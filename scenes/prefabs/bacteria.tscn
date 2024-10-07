@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://6a7ta8tturx0"]
+
+[ext_resource type="Script" path="res://scenes/prefabs/bacteria.gd" id="1_1ymgx"]
+[ext_resource type="Texture2D" uid="uid://ctdhqstnacj23" path="res://assets/sprites/bacteria.png" id="1_au0w0"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mouft"]
+
+[node name="BCell" type="Node2D"]
+script = ExtResource("1_1ymgx")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_au0w0")
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+position = Vector2(-1, 0)
+shape = SubResource("CircleShape2D_mouft")

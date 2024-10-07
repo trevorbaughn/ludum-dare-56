@@ -1,4 +1,5 @@
 extends Node2D
+class_name Cell
 
 @export var max_life: float
 var current_life: float

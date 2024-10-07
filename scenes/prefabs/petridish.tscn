@@ -4,12 +4,7 @@
 [ext_resource type="Script" path="res://scenes/prefabs/petridish.gd" id="1_t5dsw"]
 [ext_resource type="Texture2D" uid="uid://dslqxro5kfx7d" path="res://assets/sprites/dish.png" id="2_rn37p"]
 
-[node name="petridish" type="SubViewport"]
-disable_3d = true
-transparent_bg = true
-script = ExtResource("1_t5dsw")
-
-[node name="Control" type="Control" parent="."]
+[node name="Control" type="Control"]
 custom_minimum_size = Vector2(512, 512)
 layout_mode = 3
 anchors_preset = 15
@@ -18,7 +13,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TextureRect" type="TextureRect" parent="Control"]
+[node name="TextureRect" type="TextureRect" parent="."]
+show_behind_parent = true
+z_index = -1
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -26,5 +23,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_rn37p")
+
+[node name="petridish" type="SubViewport" parent="."]
+disable_3d = true
+transparent_bg = true
+script = ExtResource("1_t5dsw")
 
 [node name="ScreenCapturer" parent="." instance=ExtResource("1_7p43q")]

@@ -1,9 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://ypnvpop126a2"]
+[gd_scene load_steps=10 format=3 uid="uid://ypnvpop126a2"]
 
 [ext_resource type="Texture2D" uid="uid://1mb1u7bf8t6" path="res://assets/sprites/drawer closed.png" id="1_g0grs"]
 [ext_resource type="Script" path="res://scenes/prefabs/drawer_closed.gd" id="2_enlte"]
 [ext_resource type="Texture2D" uid="uid://by0fufbumd5af" path="res://assets/sprites/drawer opem.png" id="3_53tgs"]
 [ext_resource type="Script" path="res://scenes/prefabs/drawer_open.gd" id="3_q00x1"]
+[ext_resource type="Texture2D" uid="uid://bditbxg4h0kri" path="res://assets/sprites/bacteria icon.png" id="5_4piev"]
+[ext_resource type="Texture2D" uid="uid://dctlk6wj0pbhi" path="res://assets/sprites/healthbar empty.png" id="5_eea0a"]
+[ext_resource type="Texture2D" uid="uid://bi1u5f5kjnmi0" path="res://assets/sprites/healthbar_full.png" id="6_beuc8"]
+[ext_resource type="Texture2D" uid="uid://m7lk1xl008g5" path="res://assets/sprites/virus icon.png" id="8_pax58"]
+[ext_resource type="Texture2D" uid="uid://cbr5cdyenujqa" path="res://assets/sprites/parasite icon.png" id="9_85t1a"]
 
 [node name="Drawer" type="Control"]
 layout_mode = 3
@@ -15,6 +20,7 @@ offset_bottom = 40.0
 grow_horizontal = 0
 
 [node name="DrawerClosed" type="TextureButton" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -28,7 +34,6 @@ texture_normal = ExtResource("1_g0grs")
 script = ExtResource("2_enlte")
 
 [node name="DrawerOpen" type="TextureButton" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -40,6 +45,126 @@ grow_horizontal = 0
 scale = Vector2(2, 2)
 texture_normal = ExtResource("3_53tgs")
 script = ExtResource("3_q00x1")
+
+[node name="b_health_bg" type="TextureRect" parent="DrawerOpen"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -125.5
+offset_top = 25.0
+offset_right = -8.5
+offset_bottom = 45.0
+grow_horizontal = 0
+texture = ExtResource("5_eea0a")
+stretch_mode = 2
+
+[node name="b_health_fg" type="TextureRect" parent="DrawerOpen/b_health_bg"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -112.5
+offset_top = 2.5
+offset_right = -4.5
+offset_bottom = 22.5
+grow_horizontal = 0
+texture = ExtResource("6_beuc8")
+stretch_mode = 2
+
+[node name="b_icon" type="TextureRect" parent="DrawerOpen/b_health_bg"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -131.0
+offset_top = -18.5
+offset_right = -97.0
+offset_bottom = 14.5
+grow_horizontal = 0
+mouse_filter = 0
+texture = ExtResource("5_4piev")
+stretch_mode = 2
+
+[node name="v_health_bg" type="TextureRect" parent="DrawerOpen"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -125.5
+offset_top = 61.0
+offset_right = -8.5
+offset_bottom = 81.0
+grow_horizontal = 0
+texture = ExtResource("5_eea0a")
+stretch_mode = 2
+
+[node name="v_health_fg" type="TextureRect" parent="DrawerOpen/v_health_bg"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -112.5
+offset_top = 3.0
+offset_right = -4.5
+offset_bottom = 23.0
+grow_horizontal = 0
+texture = ExtResource("6_beuc8")
+stretch_mode = 2
+
+[node name="v_icon" type="TextureRect" parent="DrawerOpen/v_health_bg"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -131.0
+offset_top = -18.5
+offset_right = -97.0
+offset_bottom = 14.5
+grow_horizontal = 0
+mouse_filter = 0
+texture = ExtResource("8_pax58")
+stretch_mode = 2
+
+[node name="v_health_bg2" type="TextureRect" parent="DrawerOpen"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -125.5
+offset_top = 95.5
+offset_right = -8.5
+offset_bottom = 115.5
+grow_horizontal = 0
+texture = ExtResource("5_eea0a")
+stretch_mode = 2
+
+[node name="v_health_fg" type="TextureRect" parent="DrawerOpen/v_health_bg2"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -112.5
+offset_top = 2.5
+offset_right = -4.5
+offset_bottom = 22.5
+grow_horizontal = 0
+texture = ExtResource("6_beuc8")
+stretch_mode = 2
+
+[node name="v_icon" type="TextureRect" parent="DrawerOpen/v_health_bg2"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -131.0
+offset_top = -18.5
+offset_right = -97.0
+offset_bottom = 14.5
+grow_horizontal = 0
+mouse_filter = 0
+texture = ExtResource("9_85t1a")
+stretch_mode = 2
 
 [connection signal="pressed" from="DrawerClosed" to="DrawerClosed" method="_on_pressed"]
 [connection signal="pressed" from="DrawerOpen" to="DrawerOpen" method="_on_pressed"]
