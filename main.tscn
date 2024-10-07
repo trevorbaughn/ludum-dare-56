@@ -1,12 +1,16 @@
-[gd_scene load_steps=13 format=3 uid="uid://evsjylwixarv"]
+[gd_scene load_steps=18 format=3 uid="uid://evsjylwixarv"]
 
 [ext_resource type="PackedScene" uid="uid://ypnvpop126a2" path="res://scenes/prefabs/drawer.tscn" id="3_hsewk"]
 [ext_resource type="PackedScene" uid="uid://d0wouk740bibs" path="res://scenes/prefabs/ScreenCapturer.tscn" id="4_ytr26"]
+[ext_resource type="Texture2D" uid="uid://dhtbm0m6785m6" path="res://assets/sprites/qtip.png" id="5_aqc73"]
 [ext_resource type="Texture2D" uid="uid://cks4i24fbk38x" path="res://assets/sprites/button unpressed.png" id="5_s63tq"]
 [ext_resource type="Texture2D" uid="uid://b52h7fxq7j4bs" path="res://assets/sprites/button pressed.png" id="6_0yeit"]
+[ext_resource type="Texture2D" uid="uid://cm1pht5n3rprg" path="res://assets/sprites/dropper.png" id="6_jm76k"]
+[ext_resource type="Texture2D" uid="uid://xh2r20g03gh" path="res://assets/sprites/toothpick.png" id="6_l7ffk"]
 [ext_resource type="Script" path="res://capture_button.gd" id="6_yudn2"]
 [ext_resource type="Texture2D" uid="uid://dslqxro5kfx7d" path="res://assets/sprites/dish.png" id="7_cq2aw"]
 [ext_resource type="PackedScene" uid="uid://6a7ta8tturx0" path="res://scenes/prefabs/bacteria.tscn" id="7_oaba0"]
+[ext_resource type="Texture2D" uid="uid://qqwt6ffcdgf0" path="res://assets/sprites/burner.png" id="7_qroq4"]
 [ext_resource type="Texture2D" uid="uid://bwb0lqj4q7frd" path="res://assets/sprites/background.png" id="8_e5nev"]
 
 [sub_resource type="Animation" id="Animation_klbet"]
@@ -62,6 +66,20 @@ _data = {
 "move_out": SubResource("Animation_j46kl")
 }
 
+[sub_resource type="GDScript" id="GDScript_h04qd"]
+script/source = "extends Node
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
 [node name="Node" type="Node"]
 
 [node name="UI" type="Control" parent="."]
@@ -83,10 +101,10 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -251.0
-offset_top = -129.0
-offset_right = -141.0
-offset_bottom = -63.0
+offset_left = -294.0
+offset_top = -126.0
+offset_right = -184.0
+offset_bottom = -60.0
 grow_horizontal = 0
 grow_vertical = 0
 scale = Vector2(2, 2)
@@ -95,6 +113,87 @@ texture_pressed = ExtResource("6_0yeit")
 stretch_mode = 0
 script = ExtResource("6_yudn2")
 wait_time = 1.5
+
+[node name="Toothpick" type="TextureButton" parent="UI"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 122.423
+offset_top = -90.623
+offset_right = 140.423
+offset_bottom = -12.623
+grow_vertical = 2
+rotation = 0.475566
+scale = Vector2(2, 2)
+texture_normal = ExtResource("6_l7ffk")
+
+[node name="Toothpick2" type="TextureButton" parent="UI"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 199.423
+offset_top = -91.623
+offset_right = 217.423
+offset_bottom = -13.623
+grow_vertical = 2
+rotation = -0.394444
+scale = Vector2(2, 2)
+texture_normal = ExtResource("6_l7ffk")
+
+[node name="Toothpick3" type="TextureButton" parent="UI"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 163.423
+offset_top = -120.623
+offset_right = 181.423
+offset_bottom = -42.623
+grow_vertical = 2
+rotation = -0.010472
+scale = Vector2(2, 2)
+texture_normal = ExtResource("6_l7ffk")
+
+[node name="Dropper" type="TextureButton" parent="UI"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 39.0
+offset_top = -178.0
+offset_right = 84.0
+offset_bottom = -85.0
+grow_vertical = 0
+scale = Vector2(2, 2)
+texture_normal = ExtResource("6_jm76k")
+
+[node name="Qtip" type="TextureButton" parent="UI"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 130.0
+offset_top = -145.0
+offset_right = 175.0
+offset_bottom = -68.0
+grow_vertical = 0
+scale = Vector2(2, 2)
+texture_normal = ExtResource("5_aqc73")
+
+[node name="Burner" type="TextureButton" parent="UI"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 214.0
+offset_top = -161.0
+offset_right = 260.0
+offset_bottom = -78.0
+grow_vertical = 0
+scale = Vector2(2, 2)
+texture_normal = ExtResource("7_qroq4")
 
 [node name="Background" type="TextureRect" parent="."]
 z_index = -5
@@ -131,6 +230,9 @@ libraries = {
 
 [node name="BCell" parent="PetriDish" instance=ExtResource("7_oaba0")]
 position = Vector2(160, 214.001)
+
+[node name="GameManager" type="Node" parent="."]
+script = SubResource("GDScript_h04qd")
 
 [connection signal="button_down" from="UI/CaptureButton" to="UI/CaptureButton" method="_on_button_down"]
 [connection signal="button_up" from="UI/CaptureButton" to="UI/CaptureButton" method="_on_button_up"]
