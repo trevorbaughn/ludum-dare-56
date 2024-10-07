@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://ypnvpop126a2"]
+[gd_scene load_steps=5 format=3 uid="uid://ypnvpop126a2"]
 
-[ext_resource type="Texture2D" uid="uid://c04sd2ge0u3x0" path="res://icon.svg" id="1_vyhvv"]
+[ext_resource type="Texture2D" uid="uid://1mb1u7bf8t6" path="res://assets/sprites/drawer closed.png" id="1_g0grs"]
 [ext_resource type="Script" path="res://scenes/prefabs/drawer_closed.gd" id="2_enlte"]
+[ext_resource type="Texture2D" uid="uid://by0fufbumd5af" path="res://assets/sprites/drawer opem.png" id="3_53tgs"]
 [ext_resource type="Script" path="res://scenes/prefabs/drawer_open.gd" id="3_q00x1"]
 
 [node name="Drawer" type="Control"]
@@ -18,10 +19,12 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -128.0
-offset_bottom = 128.0
+offset_left = -299.0
+offset_right = -150.0
+offset_bottom = 26.0
 grow_horizontal = 0
-texture_normal = ExtResource("1_vyhvv")
+scale = Vector2(2, 2)
+texture_normal = ExtResource("1_g0grs")
 script = ExtResource("2_enlte")
 
 [node name="DrawerOpen" type="TextureButton" parent="."]
@@ -30,11 +33,12 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -128.0
-offset_bottom = 128.0
+offset_left = -299.0
+offset_right = -150.0
+offset_bottom = 151.0
 grow_horizontal = 0
-texture_normal = ExtResource("1_vyhvv")
-flip_v = true
+scale = Vector2(2, 2)
+texture_normal = ExtResource("3_53tgs")
 script = ExtResource("3_q00x1")
 
 [connection signal="pressed" from="DrawerClosed" to="DrawerClosed" method="_on_pressed"]

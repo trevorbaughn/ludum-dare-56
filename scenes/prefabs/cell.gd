@@ -1,7 +1,7 @@
 extends Node2D
 
-@export var max_life: int
-var current_life: int
+@export var max_life: float
+var current_life: float
 var is_refrigerated: bool = true
 @export var regen_rate: float = 10.0
 

@@ -1,15 +1,15 @@
-[gd_scene load_steps=13 format=3 uid="uid://evsjylwixarv"]
+[gd_scene load_steps=14 format=3 uid="uid://evsjylwixarv"]
 
 [ext_resource type="PackedScene" uid="uid://br81af7c7x62" path="res://scenes/prefabs/cell.tscn" id="1_8jtko"]
-[ext_resource type="Texture2D" uid="uid://c04sd2ge0u3x0" path="res://icon.svg" id="1_stixn"]
 [ext_resource type="Script" path="res://scenes/prefabs/cell.gd" id="2_rxsn3"]
 [ext_resource type="PackedScene" uid="uid://ypnvpop126a2" path="res://scenes/prefabs/drawer.tscn" id="3_hsewk"]
 [ext_resource type="PackedScene" uid="uid://dp88xhc5cfm2p" path="res://scenes/prefabs/petridish.tscn" id="4_1bunk"]
+[ext_resource type="Texture2D" uid="uid://cks4i24fbk38x" path="res://assets/sprites/button unpressed.png" id="5_s63tq"]
+[ext_resource type="Texture2D" uid="uid://b52h7fxq7j4bs" path="res://assets/sprites/button pressed.png" id="6_0yeit"]
 [ext_resource type="Script" path="res://capture_button.gd" id="6_yudn2"]
+[ext_resource type="Texture2D" uid="uid://bwb0lqj4q7frd" path="res://assets/sprites/background.png" id="8_e5nev"]
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_psgoa"]
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_tcp3v"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_kvbh5"]
 viewport_path = NodePath("UI/CenterContainer/SubViewport")
 
 [sub_resource type="Animation" id="Animation_iv7xq"]
@@ -96,12 +96,12 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -194.0
-offset_top = -194.0
+offset_left = -110.0
+offset_top = -66.0
 grow_horizontal = 0
 grow_vertical = 0
-texture_normal = ExtResource("1_stixn")
-texture_pressed = SubResource("CompressedTexture2D_psgoa")
+texture_normal = ExtResource("5_s63tq")
+texture_pressed = ExtResource("6_0yeit")
 stretch_mode = 0
 script = ExtResource("6_yudn2")
 wait_time = 1.5
@@ -111,12 +111,22 @@ offset_left = 330.0
 offset_top = 58.0
 offset_right = 842.0
 offset_bottom = 570.0
-texture = SubResource("ViewportTexture_tcp3v")
+texture = SubResource("ViewportTexture_kvbh5")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Subviewporty"]
 libraries = {
 "": SubResource("AnimationLibrary_53sew")
 }
+
+[node name="Background" type="TextureRect" parent="."]
+z_index = -5
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("8_e5nev")
 
 [connection signal="button_down" from="UI/CaptureButton" to="UI/CaptureButton" method="_on_button_down"]
 [connection signal="button_up" from="UI/CaptureButton" to="UI/CaptureButton" method="_on_button_up"]
